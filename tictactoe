@@ -1,6 +1,4 @@
 #include <stdio.h>
-//Uncomment the next line for raspberry pi
-//#include "framebuffer.h"
 
 //Parameters: These letters stand for the values of a single row of tic-tac-toe board cells, and each variable represents the contents of a single cell in the row.
 //Returns: None
@@ -10,9 +8,8 @@ void printRow(char a1, char a2, char a3) {
         printf("  %c |  %c  |  %c  \n", a1, a2, a3);
         printf("     |      |      \n");
 }
-
-
 //Returns: None
+
 void showBoard(char *board){
         printf("\n");
         printRow(board[0], board[1], board[2]);
@@ -23,7 +20,6 @@ void showBoard(char *board){
         printRow(board[6], board[7], board[8]);
         printf("\n");
 }
-
 //getMove:      Processes a player move
 
 void getMove(char *board, char playerSymbol){
@@ -31,7 +27,7 @@ void getMove(char *board, char playerSymbol){
         char buffer[255];
 
         while (1) {
-                printf("Please enter a position(1-9) for Player $c: ", playerSymbol);
+                printf("Please enter a position(1-9) for Player %c: ", playerSymbol);
                 scanf(" %s", buffer);
                 sscanf(buffer, "%d", &position);
         if (position >= 1 && position <= 9 && board[position - 1] == ' '){
@@ -43,28 +39,30 @@ void getMove(char *board, char playerSymbol){
 		printf("Sorry, that's an invalid position, please try again!\n");
  }
 }
-}
+
 
 int checkWin(char *board, char playerSymbol){
         if ((board[0] == playerSymbol && board[1] == playerSymbol && board[2] == playerSymbol) ||
         (board[3] == playerSymbol && board[4] == playerSymbol && board[5] == playerSymbol) ||
         (board[6] == playerSymbol && board[7] == playerSymbol && board[8] == playerSymbol)) {
-        return 1; 
+        return 1; //There is a win in the row.
         }
 
         if ((board[0] == playerSymbol && board[3] == playerSymbol && board[6] == playerSymbol) ||
         (board[1] == playerSymbol && board[4] == playerSymbol && board[7] == playerSymbol) ||
         (board[2] == playerSymbol && board[5] == playerSymbol && board[8] == playerSymbol)) {
-        return 1;  
+        return 1;  // There is a win in the column.
         }
         if ((board[0] == playerSymbol && board[4] == playerSymbol && board[8] == playerSymbol) ||
         (board[2] == playerSymbol && board[4] == playerSymbol && board[6] == playerSymbol)) {
-        return 1;  
+        return 1;  // There is a win in the diagonal.
         }
 
-        return 0; 
+        return 0; //  There is no win, unfortunately.
 }
 //Returns: If the game is over, it returns 0; otherwise, it returns non-zero.  If a player wins, or if there are no more moves left, the game is done.
+
+
 int checkBoard(char *board, int *winner)
 {
         if (checkWin(board, 'X'))
@@ -87,9 +85,9 @@ int checkBoard(char *board, int *winner)
         }
         return spaceCount;
 }
-
 //To make the program execute, all of the functions are compiled together in the main function. determines whether everything is functioning as it should. 
-char **argv, int argc, and int main
+
+int main(int argc, char **argv)
 {
         char board[9] = {' ', ' ', ' ', ' ', ' ', ' ',  ' ', ' ', ' '};
         char symbols[3]={' ','X','O'};
@@ -98,7 +96,7 @@ char **argv, int argc, and int main
         int running = 1;
         while (running)
         {
-                player = (player++) % 2 + 1;
+                player = (player + 1) % 2 + 1;
                 showBoard(board);
                 getMove(board, symbols[player]);
                 running = checkBoard(board, &winner);
