@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdboo.h>
 
+//Parameters: These letters stand for the values of a single row of tic-tac-toe board cells, and each variable represents the contents of a single cell in the row.
+//Returns: None
 void showBoard(char* board) {
     printf("     |      |      \n");
     printf("  %c  |  %c  |  %c\n", board[0], board[1], board[2]);
@@ -19,10 +21,10 @@ void getMove(char *board, char playerSymbols)
 {
       int move;
       bool valid = false;
-      while(!valid){
+      while(!valid{
       printf("It is %c's turn. Please enter your move into an empty space between 1 and 9. \n", playerSymbol);
       scanf("%d, &move);
-      if(move>=1&&move<=9&&board[move-1]==' '){
+      if(move>=1&&molve<=9&&board[move-1]==' '){
       board[move-1]=playerSymbols;
       valid = true;
       }
@@ -60,6 +62,7 @@ return 1;
 else{
 return 0;
 }
+//Returns: If the game is over, it returns 0; otherwise, it returns non-zero.  If a player wins, or if there are no more moves left, the game is done.
 
 
 
