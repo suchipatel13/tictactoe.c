@@ -1,4 +1,4 @@
-#include <studio.h>
+#include <stfio.h>
 #include <stdboo.h>
 
 void showBoard(char* board) {
