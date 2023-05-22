@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdboo.h>
+#include <stdbool.h>
 
 //Parameters: These letters stand for the values of a single row of tic-tac-toe board cells, and each variable represents the contents of a single cell in the row.
 //Returns: None
@@ -29,7 +29,7 @@ void getMove(char *board, char playerSymbols)
       valid = true;
       }
       else{
-           printf"Invalid move, try again.\n");
+           printf("Invalid move, try again.\n");
 }
 }
 }
